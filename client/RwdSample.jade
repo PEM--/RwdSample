@@ -1,0 +1,51 @@
+head
+  title Reactive menu test
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, maximum-scale=1, user-scalable=no')
+  meta(name='apple-mobile-web-app-capable', content='yes')
+  meta(name='apple-mobile-web-app-status-bar-style', content='black')
+  meta(name='apple-mobile-web-app-capable', content='yes')
+  meta(name='mobile-web-app-capable', content='yes')
+
+template(name='layout')
+  +menu
+  +Scrollview size=['undefined, undefined']
+    +yield
+
+template(name='menu')
+  +StateModifier id='menuSmod' size=size align='[.5,0]' origin='[.5,0]' 
+    +Surface id='menuSurf' size=size class='green-bg' translate='[0,0,1]'
+      p Set something
+
+template(name='home')
+  +Surface id='content' size='[undefined, true]' class='red-bg'
+    .menuPadding
+    p Resolution #{width}X#{height}
+    h1 Test title
+    h2 Test title
+    h3 Test title
+    h4 Test title
+    h5 Test title
+    h6 Test title
+    h1 Test title
+    h2 Test title
+    h3 Test title
+    h4 Test title
+    h5 Test title
+    h6 Test title
+    h1 Test title
+    h2 Test title
+    h3 Test title
+    h4 Test title
+    h5 Test title
+    h6 Test title
+    h1 Test title
+    h2 Test title
+    h3 Test title
+    h4 Test title
+    h5 Test title
+    h6 Test title
+  +Surface id='footer' size='[undefined, true]' class='footer-bg'
+    footer
+      p Stuff to set in the footer
+        
