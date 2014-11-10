@@ -11,10 +11,11 @@ maincss
   .add '.red-bg', backgroundColor: theme.bgPrimary
   .add '.footer-bg', backgroundColor: theme.bgSecondary
   .add '.menuPadding', width: CSSC.pc 100
-  .add 'body',
-    background: theme.bgPrimary
+  .add 'html.famous-root',
     color: theme.primary
-    backgroundImage: 'url(/background.jpg)'
+    background: 'url(/background.jpg) no-repeat center center fixed'
+    backgroundColor: theme.bgPrimary
+    backgroundSize: 'cover'
 
 Tracker.autorun ->
   width = rwindow.innerWidth()
