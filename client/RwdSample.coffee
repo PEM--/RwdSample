@@ -6,6 +6,7 @@ rxMenu = new ReactiveDict
 
 Template.layout.rendered = ->
   FView.mainCtx.setPerspective 0
+  BkImageSurface = bkimagesurface.BkImageSurface
 
 Template.menu.rendered = ->
   rxMenu.set 'isOpen', true
