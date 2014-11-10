@@ -2,10 +2,10 @@ FView.ready ->
   @Transform = famous.core.Transform
   famous.core.famous
 
+rxMenu = new ReactiveDict
+
 Template.layout.rendered = ->
   FView.mainCtx.setPerspective 0
-
-rxMenu = new ReactiveDict
 
 Template.menu.rendered = ->
   rxMenu.set 'isOpen', true
@@ -19,7 +19,6 @@ Template.menu.rendered = ->
 Template.menu.helpers
   size: "[undefined, #{Session.get 'menuHeight'}]"
   isMenuOpen: -> Session.get 'isMenuOpen'
-
 
 Template.home.helpers
   width: -> rwindow.innerWidth()

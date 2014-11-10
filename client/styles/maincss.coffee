@@ -1,10 +1,15 @@
 maincss = new CSSC
 
+
 theme =
   primary: CSSC.white
   secondary: CSSC.yellow
-  bgPrimary: CSSC.red
-  bgSecondary: CSSC.navy
+  bgPrimary: (new CSSC.Clr [CSSC.black, 0.5]).rgba()
+  bgSecondary: (new CSSC.Clr [CSSC.black, 0.1]).rgba()
+
+
+console.log 'Theme', theme
+
 
 maincss
   .add '.green-bg', background: CSSC.green

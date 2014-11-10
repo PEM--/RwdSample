@@ -11,6 +11,9 @@ template(name='layout')
   +menu
   +Scrollview size=['undefined, undefined']
     +yield
+    +Surface id='footer' size='[undefined, true]' class='footer-bg'
+      footer
+        p Stuff to set in the footer
 
 template(name='menu')
   +StateModifier id='menuSmod' size=size align='[.5,0]' origin='[.5,0]' 
@@ -45,7 +48,3 @@ template(name='home')
     h4 Test title
     h5 Test title
     h6 Test title
-  +Surface id='footer' size='[undefined, true]' class='footer-bg'
-    footer
-      p Stuff to set in the footer
-        
