@@ -1,24 +1,20 @@
 maincss = new CSSC
 
-
 theme =
   primary: CSSC.white
   secondary: CSSC.yellow
-  bgPrimary: (new CSSC.Clr [CSSC.black, 0.5]).rgba()
-  bgSecondary: (new CSSC.Clr [CSSC.black, 0.1]).rgba()
-
-
-console.log 'Theme', theme
-
+  bgPrimary: (new CSSC.Clr [CSSC.black, 0.6]).rgba()
+  bgSecondary: (new CSSC.Clr [CSSC.black, 0.95]).rgba()
 
 maincss
-  .add '.green-bg', background: CSSC.green
-  .add '.red-bg', backgroundColor: CSSC.red
+  .add '.green-bg', background: theme.bgPrimary
+  .add '.red-bg', backgroundColor: theme.bgPrimary
   .add '.footer-bg', backgroundColor: theme.bgSecondary
   .add '.menuPadding', width: CSSC.pc 100
   .add 'body',
     background: theme.bgPrimary
     color: theme.primary
+    backgroundImage: 'url(/background.jpg)'
 
 Tracker.autorun ->
   width = rwindow.innerWidth()
