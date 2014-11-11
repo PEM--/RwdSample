@@ -24,14 +24,10 @@ Tracker.autorun ->
     when width < 640
       Session.set 'menuHeight', 50
       maincss
-        #.add 'html', fontSize: CSSC.px 14
-        #.add '.menuPadding', height: CSSC.px 50
-        .add 'html', fontSize: '14px'
-        .add '.menuPadding', height: '50px'
+        .add 'html', fontSize: CSSC.px 14
+        .add '.menuPadding', height: CSSC.px 50
     else
       Session.set 'menuHeight', 100
       maincss
-        #.add 'html', fontSize: CSSC.px 20
-        #.add '.menuPadding', height: CSSC.px 100
-        .add 'html', fontSize: '20px'
-        .add '.menuPadding', height: '100px'
+        .add 'html', fontSize: CSSC.px 20
+        .add '.menuPadding', height: CSSC.px 100
