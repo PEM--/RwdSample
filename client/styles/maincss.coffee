@@ -17,9 +17,6 @@ maincss
     background: 'url(/background.jpg) no-repeat center center fixed'
     backgroundColor: theme.bgPrimary
     backgroundSize: 'cover'
-  .add '.backface',
-    webkitBackfaceVisibility: 'visible'
-    backfaceVisibility: 'visible'
 
 Tracker.autorun ->
   width = rwindow.innerWidth()

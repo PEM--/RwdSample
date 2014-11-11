@@ -53,38 +53,33 @@ Template.grid.helpers
       { url: '/louder_please_1366_908.jpg' }
     ]
 
+Transitionable = famous.transitions.Transitionable
+Easing = famous.transitions.Easing
+
+gridState = true
+zWorld = -1000
+zItem = -1.1 * zWorld
+
 Template.grid.rendered = ->
   gridCtx = FView.byId 'gridCtx'
   gridCtx.view.context.setPerspective 1000
-
-gridState = true
-
-Transitionable = famous.transitions.Transitionable
-Easing = famous.transitions.Easing
 
 Template.gridItem.rendered = ->
   worldMod = (FView.byId 'gridWorld').modifier
   item = FView.byId @data.url
   itemMod = item.parent.modifier
+  trans = new Transitionable 0
   item.view.on 'click', ->
-    zWorld = -1000
-    zItem = 1100
-    begin = if gridState then 0 else 1
-    end = if gridState then 1 else 0
-    trans = new Transitionable begin
-    gridState = not gridState
     worldMod.transformFrom ->
       Transform.translate 0, 0, zWorld * Easing.inOutQuad trans.get()
-    console.log 'Mod', itemMod
-    console.log 'Surf', @
-    initialSize = @getSize()
-    console.log 'Initial size', initialSize
     itemMod.transformFrom ->
       val = trans.get()
       rot = Transform.rotateY Math.PI*2*val
       z = Transform.translate 0, 0, zItem * Easing.inOutQuad val
       Transform.multiply z, rot
-    trans.set end, duration: 600, curve: 'linear'
+    trans.set Number not gridState
+    trans.set (Number gridState), duration: 600, curve: 'linear'
+    gridState = not gridState
 
 Template.home.helpers
   size: -> "[#{rwindow.innerWidth()},#{rwindow.innerHeight()}]"
