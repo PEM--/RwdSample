@@ -15,9 +15,10 @@ FView.ready ->
       switch key
         when 'sizemode'
           @view.setSizeMode BkImageSurface.SizeMode[value]
-        when 'class'
-          console.log 'Classes', value
-          @view.setClasses value
+        when 'backface'
+          if value
+            @view.properties.webkitBackfaceVisibility = 'visible'
+            @view.properties.backfaceVisibility = 'visible'
     famousCreatedPost: ->
       @pipeChildrenTo = if @parent.pipeChildrenTo? then \
         [ @view, @parent.pipeChildrenTo[0] ] else [ @view ]
@@ -74,6 +75,10 @@ Template.gridItem.rendered = ->
     gridState = not gridState
     worldMod.transformFrom ->
       Transform.translate 0, 0, zWorld * Easing.inOutQuad trans.get()
+    console.log 'Mod', itemMod
+    console.log 'Surf', @
+    initialSize = @getSize()
+    console.log 'Initial size', initialSize
     itemMod.transformFrom ->
       val = trans.get()
       rot = Transform.rotateY Math.PI*2*val
