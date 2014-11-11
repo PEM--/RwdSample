@@ -1,12 +1,32 @@
+Transform = famous.core.Transform
+Engine = famous.core.Engine
+famous.polyfills
+
+mainCtx = Engine.createContext()
+FView.mainCtx = mainCtx
+mainCtx.setPerspective 0
+
 FView.ready ->
-  @Transform = famous.core.Transform
-  famous.core.famous
+  BkImageSurface = bkimagesurface.BkImageSurface
+  FView.registerView 'BkImageSurface', BkImageSurface,
+    add: (child_fview, child_options) ->
+      @view[target].add child_fview
+    attrUpdate: (key, value, oldValue, data, firstTime) ->
+      switch key
+        when 'sizemode'
+          @view.setSizeMode BkImageSurface.SizeMode[value]
+        when 'class'
+          console.log 'Classes', value
+          @view.setClasses value
+    famousCreatedPost: ->
+      @pipeChildrenTo = if @parent.pipeChildrenTo? then \
+        [ @view, @parent.pipeChildrenTo[0] ] else [ @view ]
+  FView.registerView 'GridLayout', famous.views.GridLayout,
+    famousCreatedPost: ->
+      @pipeChildrenTo = if @parent.pipeChildrenTo? then \
+        [ @view, @parent.pipeChildrenTo[0] ] else [ @view ]
 
 rxMenu = new ReactiveDict
-
-Template.layout.rendered = ->
-  FView.mainCtx.setPerspective 0
-  BkImageSurface = bkimagesurface.BkImageSurface
 
 Template.menu.rendered = ->
   rxMenu.set 'isOpen', true
@@ -21,12 +41,50 @@ Template.menu.helpers
   size: "[undefined, #{Session.get 'menuHeight'}]"
   isMenuOpen: -> Session.get 'isMenuOpen'
 
+Template.grid.helpers
+  picts: ->
+    [
+      { url: '/eternal_snow_1366_911.jpg' }
+      { url: '/fishing_party_1366_907.jpg' }
+      { url: '/flowers_1366_908.jpg' }
+      { url: '/foggy_night_1366_852.jpg' }
+      { url: '/harbour_1366_921.jpg' }
+      { url: '/louder_please_1366_908.jpg' }
+    ]
+
+Template.grid.rendered = ->
+  gridCtx = FView.byId 'gridCtx'
+  gridCtx.view.context.setPerspective 1000
+
+gridState = true
+
+Transitionable = famous.transitions.Transitionable
+Easing = famous.transitions.Easing
+
+Template.gridItem.rendered = ->
+  worldMod = (FView.byId 'gridWorld').modifier
+  item = FView.byId @data.url
+  itemMod = item.parent.modifier
+  item.view.on 'click', ->
+    zWorld = -1000
+    zItem = 1100
+    begin = if gridState then 0 else 1
+    end = if gridState then 1 else 0
+    trans = new Transitionable begin
+    gridState = not gridState
+    worldMod.transformFrom ->
+      Transform.translate 0, 0, zWorld * Easing.inOutQuad trans.get()
+    itemMod.transformFrom ->
+      val = trans.get()
+      rot = Transform.rotateY Math.PI*2*val
+      z = Transform.translate 0, 0, zItem * Easing.inOutQuad val
+      Transform.multiply z, rot
+    trans.set end, duration: 600, curve: 'linear'
+
 Template.home.helpers
-  width: -> rwindow.innerWidth()
-  height: -> rwindow.innerHeight()
+  size: -> "[#{rwindow.innerWidth()},#{rwindow.innerHeight()}]"
 
 Template.home.rendered = ->
   content = (FView.byId 'content').surface
-  console.log content
   content.on 'click', ->
     rxMenu.set 'isOpen', (not rxMenu.get 'isOpen')

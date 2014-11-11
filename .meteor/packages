@@ -9,11 +9,12 @@ insecure
 mquandalle:jade
 coffeescript
 gadicohen:famous-views
+gadicohen:reactive-window
+reactive-dict
 pierreeric:cssc-colors
+pierreeric:cssc
 pierreeric:cssc-famous
 pierreeric:cssc-normalize
-gadicohen:reactive-window
 raix:famono
-reactive-dict
 iron:router
 

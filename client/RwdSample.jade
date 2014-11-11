@@ -13,12 +13,12 @@ template(name='layout')
     +yield
     +Surface id='footer' size='[undefined, true]' class='footer-bg'
       footer
-        p Stuff to set in the footer
+        h1 Footer: Set something
 
 template(name='menu')
   +StateModifier id='menuSmod' size=size align='[.5,0]' origin='[.5,0]' 
-    +Surface id='menuSurf' size=size class='green-bg' translate='[0,0,1]'
-      p Set something
+    +Surface id='menuSurf' size=size class='green-bg' translate='[0,0,2]'
+      h1 Menu: Set something
 
 template(name='home')
   +Surface id='content' size='[undefined, true]' class='red-bg'
@@ -30,13 +30,17 @@ template(name='home')
     h4 Test title
     h5 Test title
     h6 Test title
-    h1 Test title
-    h2 Test title
-    h3 Test title
-    h4 Test title
-    h5 Test title
-    h6 Test title
 
 template(name='grid')
-  +Surface size='[undefined, undefined]'
-    img(src='/eternal_snow_1366_911.jpg')
+  +ContainerSurface id='gridCtx'
+    +Modifier id='gridWorld' align='[.5,.5]' origin='[.5,.5]' translate='[0,0,1]'
+      +GridLayout items=picts dimensions='[2,3]'
+        +famousEach picts
+          +gridItem
+      
+template(name='gridItem')
+  +Modifier align='[.5,.5]' origin='[.5,.5]' translate='[0,0,1]'
+    +BkImageSurface id=url content=url sizemode='ASPECTFILL' class='backface'
+      | no content
+    //+Surface id=url class='backface'
+      img(src=url)

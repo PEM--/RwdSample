@@ -7,6 +7,7 @@ theme =
   bgSecondary: (new CSSC.Clr [CSSC.black, 0.95]).rgba()
 
 maincss
+  .add '.simple-bg', backgroundColor: CSSC.red
   .add '.green-bg', background: theme.bgPrimary
   .add '.red-bg', backgroundColor: theme.bgPrimary
   .add '.footer-bg', backgroundColor: theme.bgSecondary
@@ -16,6 +17,9 @@ maincss
     background: 'url(/background.jpg) no-repeat center center fixed'
     backgroundColor: theme.bgPrimary
     backgroundSize: 'cover'
+  .add '.backface',
+    webkitBackfaceVisibility: 'visible'
+    backfaceVisibility: 'visible'
 
 Tracker.autorun ->
   width = rwindow.innerWidth()
@@ -23,10 +27,14 @@ Tracker.autorun ->
     when width < 640
       Session.set 'menuHeight', 50
       maincss
-        .add 'html', fontSize: CSSC.px 14
-        .add '.menuPadding', height: CSSC.px 50
+        #.add 'html', fontSize: CSSC.px 14
+        #.add '.menuPadding', height: CSSC.px 50
+        .add 'html', fontSize: '14px'
+        .add '.menuPadding', height: '50px'
     else
       Session.set 'menuHeight', 100
       maincss
-        .add 'html', fontSize: CSSC.px 20
-        .add '.menuPadding', height: CSSC.px 100
+        #.add 'html', fontSize: CSSC.px 20
+        #.add '.menuPadding', height: CSSC.px 100
+        .add 'html', fontSize: '20px'
+        .add '.menuPadding', height: '100px'
