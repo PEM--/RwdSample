@@ -1,6 +1,9 @@
 template(name='grid')
   +ContainerSurface id='gridCtx'
-    +Modifier id='gridWorld' align='[.5,.5]' origin='[.5,.5]' translate='[0,0,1]'
+    +Modifier(  id='gridWorld'
+                align='[.5, .5]'
+                origin='[.5, .5]'
+                translate='[0, 0, 100]')
       +GridLayout dimensions='[2,3]'
         +famousEach picts
           +gridItem
