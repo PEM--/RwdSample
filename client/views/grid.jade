@@ -1,7 +1,7 @@
 template(name='grid')
   +ContainerSurface id='gridCtx'
     +Modifier id='gridWorld' align='[.5,.5]' origin='[.5,.5]' translate='[0,0,1]'
-      +GridLayout items=picts dimensions='[2,3]'
+      +GridLayout dimensions='[2,3]'
         +famousEach picts
           +gridItem
       
@@ -9,5 +9,3 @@ template(name='gridItem')
   +Modifier align='[.5,.5]' origin='[.5,.5]' translate='[0,0,1]'
     +BkImageSurface id=url content=url sizemode='ASPECTFILL' backface=true
       | no content
-    //+Surface id=url class='backface'
-      img(src=url)
