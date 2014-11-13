@@ -5,8 +5,5 @@
 	},
 	"famous.polyfills": {
 		"git": "https://github.com/Famous/polyfills.git"
-	},
-	"bkimagesurface": {
-		"git": "https://github.com/IjzerenHein/famous-bkimagesurface.git"
 	}
 }

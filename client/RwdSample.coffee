@@ -8,3 +8,6 @@ famous.polyfills
 mainCtx = Engine.createContext()
 FView.mainCtx = mainCtx
 mainCtx.setPerspective 0
+
+FView.ready ->
+  FView.registerView 'GridLayout', famous.views.GridLayout
