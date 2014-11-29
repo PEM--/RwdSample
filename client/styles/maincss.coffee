@@ -20,7 +20,18 @@ maincss
   .add '.backface',
     webkitBackfaceVisibility: 'visible'
     backfaceVisibility: 'visible'
-
+  .add '.red-button',
+    backgroundColor: CSSC.red
+    borderRadius: CSSC.px 5
+  .add '.line',
+    backgroundColor: CSSC.yellow
+    borderRadius: CSSC.px 1
+    pointerEvents: 'none'
+  .add '.dotloader-background',
+    backgroundColor: CSSC.green
+    borderRadius: CSSC.px 5
+  .add '.dotloader-dots',
+    backgroundColor: CSSC.yellow
 
 Tracker.autorun ->
   width = rwindow.innerWidth()

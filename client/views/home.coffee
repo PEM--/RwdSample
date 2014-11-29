@@ -1,5 +1,6 @@
 Template.home.helpers
-  size: -> "[#{rwindow.innerWidth()},#{rwindow.innerHeight()}]"
+  width: -> rwindow.innerWidth()
+  height: -> rwindow.innerHeight()
 
 Template.home.rendered = ->
   content = (FView.byId 'content').surface
